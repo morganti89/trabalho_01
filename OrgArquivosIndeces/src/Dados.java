@@ -6,6 +6,7 @@ public class Dados implements Comparable<Dados>{
     public String email;
     public String city;
     private String chave;
+    private int hash;
 
 
     public Dados (String[] params) {
@@ -14,6 +15,7 @@ public class Dados implements Comparable<Dados>{
         this.email = params[2];
         this.name = params[3];
         this.city = params[4];
+        calculaHash();
     }
     @Override
     public int compareTo(Dados other) {
@@ -35,6 +37,15 @@ public class Dados implements Comparable<Dados>{
             }
         }
         return 0;
+    }
+
+    public void calculaHash() {
+        int tamanho_nome_emprego = (this.name.length() + this.job.length())/2;
+        this.hash = tamanho_nome_emprego * Integer.parseInt(this.id);
+    }
+
+    public int getHash(){
+        return this.hash;
     }
 
     public void setChave(String chave) {
